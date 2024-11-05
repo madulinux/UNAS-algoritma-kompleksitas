@@ -8,55 +8,62 @@ Content:
 - <a href="#installation-and-usage">Instalation & Usage</a>
 
 ## Documentation
-
-#### Project Structure:
-    ./
-    ├── cplus/
-    │   ├── helper.cpp
-    │   └── main.cpp
-    ├── golang/
-    │   ├── helper.go
-    │   └── main.go
-    ├── java/
-    │   ├── Helper.java
-    │   └── Main.java
-    ├── javascript/
-    │   ├── helper.js
-    │   └── main.js
-    ├── php/
-    │   ├── helper.php
-    │   └── main.php
-    ├── py/
-    │   ├── helper.py
-    │   └── main.py
-    ├── rustapp/
-    │   ├── helper.rs
-    │   └── main.rs
-    ├── app.sh
-    ├── config.json
-    ├── convert_log_to_table.py
-    ├── generate_config.py
-    ├── Makefile
-    └── run.log
-#### Top-level folders:
-    .
-    ├── cplus/
-    ├── golang/
-    ├── java/
-    ├── javascript/
-    ├── output/
-    ├── php/
-    ├── py/
-    └── rustapp/
+> Project Structure:
+```
+./
+├── cplus/
+│   ├── helper.cpp
+│   └── main.cpp
+├── golang/
+│   ├── helper.go
+│   └── main.go
+├── java/
+│   ├── Helper.java
+│   └── Main.java
+├── javascript/
+│   ├── helper.js
+│   └── main.js
+├── php/
+│   ├── helper.php
+│   └── main.php
+├── py/
+│   ├── helper.py
+│   └── main.py
+├── rustapp/
+│   ├── helper.rs
+│   └── main.rs
+├── app.sh
+├── config.json
+├── convert_log_to_table.py
+├── generate_config.py
+├── Makefile
+├── requirements.txt
+└── run.log
+```
+> Top-level folders:
+```
+./
+├── cplus/
+├── golang/
+├── java/
+├── javascript/
+├── output/
+├── php/
+├── py/
+└── rustapp/
+```
 Setiap folder berisi kode untuk masing-masing bahasa pemrograman, kecuali folder `output` yang berisi hasil export file .xlsx 
-#### Top-level files:
-    ./
-    ├── app.sh
-    ├── config.json
-    ├── convert_log_to_table.py
-    ├── generate_config.py
-    ├── Makefile
-    └── run.log
+> Top-level files:
+```
+./
+├── app.sh
+├── config.json
+├── convert_log_to_table.py
+├── generate_config.py
+├── Makefile
+├── requirements.txt
+└── run.log
+```
 Deskripsi untuk masing-masing top-level files:
 - `app.sh` : kode shell script untuk menjalankan semua program dalam satu waktu
 - `config.json` : file konfigurasi untuk kebutuhan semua program
@@ -74,13 +81,24 @@ Deskripsi untuk masing-masing top-level files:
 - `run.log` : log files untuk menyimpan hasil pengujian dari masing-masing bahasa pemrograman
 - `convert_log_to_table.py` : program python untuk menyajikan hasil `run.log` kedalam bentuk table pada tampilan konsole, atau menyimpannya ke dalam file excel.
 - `Makefile` : kumpulan kode build dan eksekusi untuk masing-masing bahasa pemrograman.
+- `requirements.txt` : requirement untuk python pandas dan export excel
 
 
   
 ## Installation and Usage
 ### Instalation
-enable execute shell script
 
+clone source code
+```bash
+git clone https://github.com/madulinux/UNAS-algoritma-kompleksitas.git
+```
+
+install python export data requirements
+```bash
+pip install -r requirements.txt
+```
+
+enable execute shell script
 ```bash
 chmod +x app.sh
 ```
@@ -91,7 +109,7 @@ build kode program
 ```
     
 ### Usage
-> Step untuk menjalankan app
+Step untuk menjalankan app
 
 melihat helper untuk menjalankan program
 ```bash
