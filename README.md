@@ -12,6 +12,24 @@ Content:
 ```
 ./
 ├── cplus/
+├── golang/
+├── java/
+├── javascript/
+├── php/
+├── py/
+├── rustapp/
+├── app.sh
+├── config.json
+├── convert_log_to_table.py
+├── generate_config.py
+├── Makefile
+├── requirements.txt
+└── run.log
+```
+> Top-level folders:
+```
+./
+├── cplus/
 │   ├── helper.cpp
 │   └── main.cpp
 ├── golang/
@@ -29,28 +47,10 @@ Content:
 ├── py/
 │   ├── helper.py
 │   └── main.py
-├── rustapp/
-│   ├── helper.rs
-│   └── main.rs
-├── app.sh
-├── config.json
-├── convert_log_to_table.py
-├── generate_config.py
-├── Makefile
-├── requirements.txt
-└── run.log
-```
-> Top-level folders:
-```
-./
-├── cplus/
-├── golang/
-├── java/
-├── javascript/
-├── output/
-├── php/
-├── py/
 └── rustapp/
+    └── src/
+        ├── helper.rs
+        └── main.rs
 ```
 Setiap folder berisi kode untuk masing-masing bahasa pemrograman, kecuali folder `output` yang berisi hasil export file .xlsx 
 > Top-level files:
