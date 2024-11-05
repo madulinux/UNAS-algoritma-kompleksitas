@@ -15,6 +15,7 @@ function show_help {
     echo "  run               Menjalankan app dengan opsi save"
     echo "  config            Update konfigurasi pada config.json"
     echo "  log               Menampilkan log output pada console dalam bentuk table"
+    echo "  clean             Menghapus semua file Excel di folder output/"
     echo "  --loop [arr_size]   Loop app dengan konfigurasi data size, contoh: 100,200,300"
     echo "  --save              Export log output ke file Excel"
     echo "  --sort-by [kolom]   Mengurutkan output berdasarkan kolom: binary, linear, atau language"
@@ -22,7 +23,9 @@ function show_help {
     echo "  --warmup [jumlah]   Mengatur jumlah warmup (opsional)"
     echo "  --target [jumlah]   Mengatur jumlah target"
     echo "  --help              Menampilkan pesan bantuan ini"
+    echo "  --analisis          Menjalankan analisis data"
 }
+
 
 # Fungsi untuk menjalankan generate_config.py dengan ukuran tertentu dan opsi warmup opsional
 function config {
@@ -50,6 +53,26 @@ function runmake {
     fi
 }
 
+# Fungsi untuk menjalankan analisis.py
+function analisis {
+    echo "Menjalankan analisis data"
+    python3 analisis.py
+}
+
+# Fungsi untuk menghapus semua file Excel di folder output/
+function clean_output {
+    echo "Menghapus semua file Excel di folder output/"
+    rm -f output/*.xlsx
+}
+
+function backup_output {
+    local backup_dir="output/backup_$(date +%Y%m%d_%H%M%S)"
+    echo "Membuat folder backup: $backup_dir"
+    mkdir -p "$backup_dir"
+    echo "Memindahkan semua file Excel ke folder backup"
+    mv output/*.xlsx "$backup_dir"
+}
+
 # Variabel untuk menyimpan opsi
 SAVE_EXCEL=""
 SORT_BY=""
@@ -61,6 +84,7 @@ SIZE=""
 WARMUP=""
 TARGET=""
 LOOP_SIZES=""
+ANALISIS=false
 
 # Parsing argumen
 while [[ "$#" -gt 0 ]]; do
@@ -68,7 +92,9 @@ while [[ "$#" -gt 0 ]]; do
         config) RUN_CONFIG=true ;;
         run) RUN_MAKE=true ;;
         build) BUILD_MAKE=true ;;
+        clean) clean_output ;;
         log) CONVERT_LOG=true ;;
+        backup) backup_output ;;
         --save) SAVE_EXCEL="--save-excel" ;;  # Hanya digunakan di dalam runmake
         --sort-by) SORT_BY="--sort-by $2"; shift ;;
         --size) SIZE="$2"; shift ;;
@@ -76,6 +102,7 @@ while [[ "$#" -gt 0 ]]; do
         --target) TARGET="--target $2"; shift ;;
         --loop) LOOP_SIZES="$2"; shift ;;  # Simpan ukuran loop yang dipisahkan koma
         --help) show_help; exit 0 ;;
+        --analisis) ANALISIS=true ;;
         *) echo "Opsi tidak dikenal: $1"; show_help; exit 1 ;;
     esac
     shift
@@ -103,6 +130,10 @@ if [ "$RUN_MAKE" = true ]; then
             config "$size" "$WARMUP"   # Memanggil fungsi config untuk setiap ukuran dengan warmup opsional
             runmake                    # Memanggil fungsi runmake setelah setiap config
         done
+
+        if [ "$ANALISIS" = true ]; then
+            analisis
+        fi
     else
         runmake
     fi

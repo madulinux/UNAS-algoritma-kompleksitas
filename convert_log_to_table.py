@@ -3,6 +3,7 @@ import re
 from datetime import datetime
 import argparse
 import os
+import json
 
 parser = argparse.ArgumentParser(description="Process log data and optionally save to Excel.")
 parser.add_argument('--save-excel', action='store_true', help="Save the output to an Excel file.")
@@ -43,10 +44,23 @@ df = df.sort_values(by=sort_column, ascending=True)
 
 # filename datetime
 if args.save_excel:
+    # Load data from config.json
+    with open('config.json', 'r') as json_file:
+        config_data = json.load(json_file)
+
+    # Convert config data to DataFrame
+    config_df = pd.DataFrame({
+        "Warmup": [config_data["warmup"]],
+        "Target": [config_data["target"]],
+        "Array": [config_data["arr"]]
+    })
+
     # check output directory
     if not os.path.exists("output"):
         os.makedirs("output")
     filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    df.to_excel(f"output/{filename}.xlsx", index=False)
+    with pd.ExcelWriter(f"output/{filename}.xlsx") as writer:
+        df.to_excel(writer, sheet_name='Log Data', index=False)
+        config_df.to_excel(writer, sheet_name='Config Data', index=False)
 # Display the table
 print(df)
