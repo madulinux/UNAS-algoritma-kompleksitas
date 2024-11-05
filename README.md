@@ -5,6 +5,7 @@ perbandingan linear & binary search pada 7 bahasa pemrograman
 <br/>
 Content:
 - <a href="#documentation">Documentation</a>
+- <a href="#flow-program">Flow</a>
 - <a href="#installation-and-usage">Instalation & Usage</a>
 
 ## Documentation
@@ -83,7 +84,29 @@ Deskripsi untuk masing-masing top-level files:
 - `Makefile` : kumpulan kode build dan eksekusi untuk masing-masing bahasa pemrograman.
 - `requirements.txt` : requirement untuk python pandas dan export excel
 
-
+## Flow Program
+1. Start
+    Begin execution of app.sh, `./app.sh run --loop 1000,2000,3000 --warmup 10 --save --analisis`.
+2. Parse Arguments
+    - Identify the run command.
+    - Set RUN_MAKE to true.
+    - Set LOOP_SIZES to "1000,2000,3000".
+    - Set WARMUP to "10".
+    - Set SAVE_EXCEL to "--save-excel".
+    - Set ANALISIS to true.
+3. Run Configurations in Loop
+    - Split LOOP_SIZES into individual sizes: 1000, 2000, 3000.
+    - For each size:
+        - Update Config
+            - Call `generate_config.py` with the current SIZE and WARMUP value.
+        - Run `Makefile`
+            - Execute make run to run all programs and log output to `run.log`.
+        - Convert Log to Table
+            - Run `convert_log_to_table.py` with `--save-excel`.
+4. Run Analysis (if --analisis is true)
+    - Execute `analisis.py` to analyze the combined data.
+5. End
+    - Complete execution of `app.sh`.
   
 ## Installation and Usage
 ### Instalation
