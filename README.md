@@ -1,10 +1,15 @@
 # SIMULASI KODE PROGRAM
-simulasi kode program algoritma kompleksitas.
+Simulasi kode program algoritma kompleksitas.
 perbandingan linear & binary search pada 7 bahasa pemrograman
 (c++, go, java, javascript, php, python, rust)
+<br/>
+Content:
+- <a href="#documentation">Documentation</a>
+- <a href="#installation-and-usage">Instalation & Usage</a>
+
 ## Documentation
 
-> Project Structure
+#### Project Structure:
     ./
     ├── cplus/
     │   ├── helper.cpp
@@ -33,7 +38,7 @@ perbandingan linear & binary search pada 7 bahasa pemrograman
     ├── generate_config.py
     ├── Makefile
     └── run.log
-> Top-level folders:
+#### Top-level folders:
     .
     ├── cplus/
     ├── golang/
@@ -44,7 +49,7 @@ perbandingan linear & binary search pada 7 bahasa pemrograman
     ├── py/
     └── rustapp/
 Setiap folder berisi kode untuk masing-masing bahasa pemrograman, kecuali folder `output` yang berisi hasil export file .xlsx 
-> Top-level files:
+#### Top-level files:
     ./
     ├── app.sh
     ├── config.json
@@ -72,8 +77,8 @@ Deskripsi untuk masing-masing top-level files:
 
 
   
-## Installation
-
+## Installation and Usage
+### Instalation
 enable execute shell script
 
 ```bash
@@ -85,8 +90,7 @@ build kode program
 ./app.sh build
 ```
     
-## Usage
-
+### Usage
 > Step untuk menjalankan app
 
 melihat helper untuk menjalankan program
