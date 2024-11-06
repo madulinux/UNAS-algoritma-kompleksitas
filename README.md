@@ -19,6 +19,7 @@ Content:
 ├── php/
 ├── py/
 ├── rustapp/
+├── analisis.py
 ├── app.sh
 ├── config.json
 ├── convert_log_to_table.py
@@ -57,6 +58,7 @@ Setiap folder berisi kode untuk masing-masing bahasa pemrograman, kecuali folder
 > Top-level files:
 ```
 ./
+├── analisis.py
 ├── app.sh
 ├── config.json
 ├── convert_log_to_table.py
@@ -81,6 +83,7 @@ Deskripsi untuk masing-masing top-level files:
 - `generate_config.py` : program python untuk generate konfigurasi `config.json`
 - `run.log` : log files untuk menyimpan hasil pengujian dari masing-masing bahasa pemrograman
 - `convert_log_to_table.py` : program python untuk menyajikan hasil `run.log` kedalam bentuk table pada tampilan konsole, atau menyimpannya ke dalam file excel.
+- `analisis.py` : program python untuk mengkombinasikan data dari semua hasil pengujian (multi dataset) dan melakukan analisis terhadap data tersebut kemudian menyimpannya ke dalam file excel.
 - `Makefile` : kumpulan kode build dan eksekusi untuk masing-masing bahasa pemrograman.
 - `requirements.txt` : requirement untuk python pandas dan export excel
 
