@@ -8,6 +8,9 @@ folder_path = 'output/'
 # Buat daftar semua file .xlsx di folder
 files = [f for f in os.listdir(folder_path) if f.endswith('.xlsx')]
 
+# order files by name
+files.sort()
+
 # Buat list untuk menyimpan data dari setiap file
 dataframes = []
 config_dataframes = []
@@ -15,29 +18,25 @@ config_dataframes = []
 # Baca setiap file dan tambahkan ke list
 for file in files:
     file_path = os.path.join(folder_path, file)
-    # Load the Excel file
-    xls = pd.ExcelFile(file_path)
-    
-    # Check if 'Log Data' sheet exists
-    if 'Log Data' in xls.sheet_names:
-        df = pd.read_excel(xls, sheet_name='Log Data')
+    try:
+        # Read the main data
+        df = pd.read_excel(file_path, sheet_name='Log Data')
         dataframes.append(df)
-    else:
-        print(f"Warning: 'Log Data' sheet not found in {file_path}")
+    except ValueError as e:
+        print(f"Error reading 'Log Data' from {file}: {e}")
+        continue
 
-    # Check if 'Config Data' sheet exists
-    if 'Config Data' in xls.sheet_names:
-        config_df = pd.read_excel(xls, sheet_name='Config Data')
+    try:
+        # Read the config data
+        config_df = pd.read_excel(file_path, sheet_name='Config Data')
         config_dataframes.append(config_df)
-    else:
-        print(f"Warning: 'Config Data' sheet not found in {file_path}")
+    except ValueError as e:
+        print(f"Error reading 'Config Data' from {file}: {e}")
+        continue
 
 # Gabungkan semua DataFrame menjadi satu
 combined_df = pd.concat(dataframes, ignore_index=True) if dataframes else pd.DataFrame()
 combined_config_df = pd.concat(config_dataframes, ignore_index=True) if config_dataframes else pd.DataFrame()
-
-# Simpan DataFrame gabungan ke file Excel baru
-# combined_df.to_excel('combined_output.xlsx', index=False)
 
 # Analisis data
 # Menghitung rata-rata waktu untuk Linear dan Binary berdasarkan jumlah data
@@ -67,11 +66,47 @@ if not combined_df.empty:
         })
     ).reset_index()
 
+    # Pengihtungan time ratio dan time increase
+    def calculate_big_o_grouped(average_times, time_column):
+        # Group by Language and calculate the ratio of time increase for each step in input size
+        average_times['Time Ratio'] = average_times.groupby('Language')[time_column].pct_change().fillna(0) + 1
+        # Determine the Big O notation based on the time ratio
+        # average_times['Big O'] = average_times['Time Ratio'].apply(
+        #     lambda x: 'O(n)' if x > 1 else 'O(1)'
+        # )
+        
+        # jika time ratio lebih besar dari 1 maka 'plus' jika tidak maka 'minus' jika sama dengan 1 maka '.'
+        average_times['Increase'] = average_times['Time Ratio'].apply(
+            lambda x: '+' if x > 1 else '-' if x < 1 else '.'
+        )
+        
+        # Sort by Language and Jumlah Data
+        return average_times.sort_values(by=['Language', 'Jumlah Data'])
+
+    # Calculate time ratio and time increase for Linear and Binary times grouped by Language
+    big_o_linear_grouped = calculate_big_o_grouped(average_times_linear, 'Linear Time (ns)')
+    big_o_binary_grouped = calculate_big_o_grouped(average_times_binary, 'Binary Time (ns)')
+
+    # # Determine a single Big O conclusion for each language
+    # def conclude_big_o(big_o_grouped, time_column):
+    #     conclusions = big_o_grouped.groupby('Language').apply(
+    #         lambda x: 'O(n)' if (x['Big O'] == 'O(n)').any() else 'O(1)'
+    #     ).reset_index(name='Concluded Big O')
+    #     return conclusions
+
+    # # Conclude Big O for Linear and Binary times
+    # concluded_big_o_linear = conclude_big_o(big_o_linear_grouped, 'Linear Time (ns)')
+    # concluded_big_o_binary = conclude_big_o(big_o_binary_grouped, 'Binary Time (ns)')
+
     # Menyimpan hasil analisis ke file Excel baru
     with pd.ExcelWriter(f"output/analysis_output_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.xlsx") as writer:
         combined_df.to_excel(writer, sheet_name='Combined Data', index=False)
         best_worst_linear.to_excel(writer, sheet_name='Best and Worst Linear', index=False)
         best_worst_binary.to_excel(writer, sheet_name='Best and Worst Binary', index=False)
+        big_o_linear_grouped.to_excel(writer, sheet_name='Linear Time Ratio', index=False)
+        big_o_binary_grouped.to_excel(writer, sheet_name='Binary Time Ratio', index=False)
+        # concluded_big_o_linear.to_excel(writer, sheet_name='Concluded Big O Linear', index=False)
+        # concluded_big_o_binary.to_excel(writer, sheet_name='Concluded Big O Binary', index=False)
         if not combined_config_df.empty:
             combined_config_df.to_excel(writer, sheet_name='Combined Config Data', index=False)
 

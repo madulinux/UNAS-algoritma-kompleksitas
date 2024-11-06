@@ -9,9 +9,10 @@ def generate_unique_random_array(size, min_value, max_value):
 
 def create_json_file_with_random_data(file_path, size, min_value, max_value, warmup = 0):
     arr = generate_unique_random_array(size, min_value, max_value)
-    target = random.choice(arr)
+    target = arr[len(arr) // 2] # Median
     
     data = {
+        "size": size,
         "warmup": warmup,
         "target": target,
         "arr": arr

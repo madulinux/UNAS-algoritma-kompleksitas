@@ -50,6 +50,7 @@ if args.save_excel:
 
     # Convert config data to DataFrame
     config_df = pd.DataFrame({
+        "Size": [config_data["size"]],
         "Warmup": [config_data["warmup"]],
         "Target": [config_data["target"]],
         "Array": [config_data["arr"]]
