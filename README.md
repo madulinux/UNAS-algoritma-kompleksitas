@@ -5,6 +5,9 @@
     - <a href="#project-structure">Project Structure</a>
 - <a href="#flow-program">Flow</a>
 - <a href="#installation-and-usage">Instalation & Usage</a>
+  - <a href="#installation">Instalation</a>
+  - <a href="#usage">Usage</a>
+  - <a href="#example">Example</a>
 
 # Introduction
 aplikasi ini dibuat untuk membandingkan kompleksitas dua algoritma pencaria `Linear Search` dan `Binary Search` dalam berbagai bahasa pemrograman. Aplikasi ini tidak hanya menguji algoritma, tetapi juga membantu kita menganalisis waktu eksekusi untuk berbagai ukuran dataset dan perbandingan antar bahasa pemrograman.
@@ -175,9 +178,16 @@ menjalankan pengujian multi dataset
 ./app.sh run --loop 100,200,300
 ```
 
-# EXAMPLE
+### Example
 
+youtube video:
+[https://www.youtube.com/watch?v=NbrscAPqlfg](https://www.youtube.com/watch?v=NbrscAPqlfg)
 
+[![Youtube Vide](https://img.youtube.com/vi/NbrscAPqlfg/0.jpg)](https://www.youtube.com/watch?v=NbrscAPqlfg)
+
+<br/>
+data hasil pengujian:
+<a href="https://drive.google.com/drive/folders/1ZZmwjw2wguclDdHlUaVJ3HZ2vxhha4tg?usp=drive_link">google drive</a>
 
 
 
