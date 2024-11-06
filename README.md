@@ -1,10 +1,13 @@
 # Content
+- <a href="#introduction">Introduction</a>
+    - <a href="#tujuan-dan-manfaat">Tujuan dan Manfaat</a>
 - <a href="#documentation">Documentation</a>
+    - <a href="#project-structure">Project Structure</a>
 - <a href="#flow-program">Flow</a>
 - <a href="#installation-and-usage">Instalation & Usage</a>
 
 # Introduction
-aplikasi ini dibuat untuk membandingkan kompleksitas dua algoritma pencarian—Linear Search dan Binary Search—dalam berbagai bahasa pemrograman. Aplikasi ini tidak hanya menguji algoritma, tetapi juga membantu kita menganalisis waktu eksekusi untuk berbagai ukuran dataset dan perbandingan antar bahasa pemrograman.
+aplikasi ini dibuat untuk membandingkan kompleksitas dua algoritma pencaria `Linear Search` dan `Binary Search` dalam berbagai bahasa pemrograman. Aplikasi ini tidak hanya menguji algoritma, tetapi juga membantu kita menganalisis waktu eksekusi untuk berbagai ukuran dataset dan perbandingan antar bahasa pemrograman.
 Simulasi kode program algoritma kompleksitas.
 
 ## Tujuan dan Manfaat
@@ -15,7 +18,7 @@ Selain itu, proyek ini bertujuan untuk menunjukkan bagaimana kompleksitas algori
 Pada akhirnya diharapkan aplikasi ini dapat mempermudah membandingkan performa algoritma pencarian Linear dan Binary Search, serta mengidentifikasi bagaimana bahasa pemrograman yang berbeda mempengaruhi waktu eksekusi. Ini memberikan gambaran yang lebih jelas mengenai perbandingan kompleksitas algoritma dalam konteks praktis.
 
 ## Documentation
-### Project Structure:
+### Project Structure
 Berikut adalah gambaran umum dari struktur proyek yang digunakan
 ```
 ./
