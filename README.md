@@ -54,7 +54,10 @@ Content:
         ├── helper.rs
         └── main.rs
 ```
-Setiap folder berisi kode untuk masing-masing bahasa pemrograman, kecuali folder `output` yang berisi hasil export file .xlsx 
+Setiap folder berisi kode untuk masing-masing bahasa pemrograman, untuk masing-masing bahasa pemrograman menggunakan struktur file yang sama, yaitu `main.*` dan `helper.*`:
+- `helper.*` : kode program fungsi linear dan binary search
+- `main.*` : kode program utama untuk menjalankan pengujian (linear & binary search), menghitung waktu eksekusi, dan menuliskan hasilnya ke dalam file `run.log`
+
 > Top-level files:
 ```
 ./
