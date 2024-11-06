@@ -2,7 +2,7 @@
 Simulasi kode program algoritma kompleksitas.
 perbandingan linear & binary search pada 7 bahasa pemrograman
 (c++, go, java, javascript, php, python, rust)
-<br/>
+
 Content:
 - <a href="#documentation">Documentation</a>
 - <a href="#flow-program">Flow</a>
@@ -54,7 +54,7 @@ Content:
         ├── helper.rs
         └── main.rs
 ```
-Setiap folder berisi kode untuk masing-masing bahasa pemrograman, untuk masing-masing bahasa pemrograman menggunakan struktur file yang sama, yaitu `main.*` dan `helper.*`:
+Setiap folder berisi kode dari masing-masing bahasa pemrograman, untuk setiap bahasa pemrograman menggunakan struktur file yang sama, yaitu `main.*` dan `helper.*`:
 - `helper.*` : kode program fungsi linear dan binary search
 - `main.*` : kode program utama untuk menjalankan pengujian (linear & binary search), menghitung waktu eksekusi, dan menuliskan hasilnya ke dalam file `run.log`
 
@@ -91,28 +91,30 @@ Deskripsi untuk masing-masing top-level files:
 - `requirements.txt` : requirement untuk python pandas dan export excel
 
 ## Flow Program
+berikut adalah flow program untuk menjalankan semua program:
+
 1. Start
-    Begin execution of app.sh, `./app.sh run --loop 1000,2000,3000 --warmup 10 --save --analisis`.
+    - Jalankan `./app.sh run --loop 1000,2000,3000,4000,5000 --warmup 10 --save --analisis`.
 2. Parse Arguments
-    - Identify the run command.
+    - Identifikasi perintah yang dijalankan.
     - Set RUN_MAKE to true.
-    - Set LOOP_SIZES to "1000,2000,3000".
+    - Set LOOP_SIZES to "1000,2000,3000,4000,5000".
     - Set WARMUP to "10".
     - Set SAVE_EXCEL to "--save-excel".
     - Set ANALISIS to true.
 3. Run Configurations in Loop
-    - Split LOOP_SIZES into individual sizes: 1000, 2000, 3000.
-    - For each size:
+    - Split LOOP_SIZES menjadi individual sizes: 1000, 2000, 3000, 4000, 5000.
+    - Untuk setiap size:
         - Update Config
-            - Call `generate_config.py` with the current SIZE and WARMUP value.
+            - Panggil `generate_config.py` dengan nilai SIZE dan WARMUP.
         - Run `Makefile`
-            - Execute make run to run all programs and log output to `run.log`.
+            - Eksekusi make run untuk menjalankan semua program dan menuliskan output ke `run.log`.
         - Convert Log to Table
-            - Run `convert_log_to_table.py` with `--save-excel`.
+            - Jalankan `convert_log_to_table.py` dengan `--save-excel`.
 4. Run Analysis (if --analisis is true)
-    - Execute `analisis.py` to analyze the combined data.
+    - Jalankan `analisis.py` untuk melakukan analisa data, dan mendapatkan hasil dalam bentuk file excel.
 5. End
-    - Complete execution of `app.sh`.
+    - Selesai eksekusi `app.sh`.
   
 ## Installation and Usage
 ### Instalation
